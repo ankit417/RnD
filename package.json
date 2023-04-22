@@ -6,21 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run",
-    "cy:spec": "cypress run --spec"
+    "lint": "next lint"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "eslint-plugin-prettier": "^4.2.1",
     "moment": "^2.29.4",
     "next": "^13.1.2",
     "prettier": "^2.6.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.0"
+    },
   "devDependencies": {
-    "@cypress/react": "^7.0.2",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
     "cypress": "^12.8.1",

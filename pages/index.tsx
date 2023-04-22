@@ -1,20 +1,16 @@
-import Head from 'next/head';
-import { Launches } from 'components/launches/launches.component';
+import React from 'react';
 
-import styles from 'styles/Home.module.css';
+import {ChooseIcon} from '../components/material-icon/choose-icon.tsx'
 
-export default function Home() {
+const TestingIcon = () => {
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>SpaceX - Launches</title>
-        <meta name="description" content="Top 10 latest SpaceX launch data" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className={styles['main']}>
-        <h1>SpaceX - Latest Launches</h1>
-        <Launches data-testid="launch-card" />
-      </main>
-    </div>
+    // <div style={{margin:40}}>
+    
+            <ChooseIcon />
+    // </div>
   );
-}
+};
+
+export default TestingIcon;
+
