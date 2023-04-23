@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,6 +13,7 @@ interface ChooseIconProps {
   placeholder?: string;
   textFieldWidth?: number;
   textFieldVariant?: 'filled' | 'outlined' | 'standard';
+  selectedSvg: (arg: string | null) => void;
 }
 
 interface IconProps {
@@ -31,9 +32,13 @@ const DEFAULT_PLACEHOLDER = 'Choose an Icon';
 const WIDTH = 500;
 const DEFAULT_TEXT_FIELD_VARIANT = 'standard';
 
-export const ChooseIcon = ({ placeholder, textFieldWidth, textFieldVariant }: ChooseIconProps) => {
+export const ChooseIcon = ({ placeholder, textFieldWidth, textFieldVariant, selectedSvg }: ChooseIconProps) => {
   const [selectedIconSvg, setIconSvg] = useState<string | null>(null);
   const styles = useStyles();
+
+  useEffect(() => {
+    selectedSvg(selectedIconSvg);
+  }, [selectedIconSvg]);
 
   const loadIcons = useCallback(async ({ iconName }: IconProps) => {
     try {
@@ -50,13 +55,12 @@ export const ChooseIcon = ({ placeholder, textFieldWidth, textFieldVariant }: Ch
     return <Icon />;
   }, []);
 
-  const getSVG = useCallback((iconName: string): void => {
+  const getSVG = useCallback((iconName: string | null): void => {
     if (!iconName) {
       return setIconSvg(null);
     }
-
     try {
-      const IconComponent = (icons as React.ReactNode)[iconName] as SvgIconComponent;
+      const IconComponent = (icons as Record<string, SvgIconComponent>)[iconName];
       const iconSvgString = renderToStaticMarkup(<IconComponent />);
 
       if (!iconSvgString.includes('<svg')) {
